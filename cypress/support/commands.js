@@ -37,6 +37,15 @@ Cypress.Commands.add('createOng', () => {
         }
     }).then(response => {
         expect(response.body.id).is.not.null;
-        Cypress.env('createdOngId', response.body.id)
+        Cypress.env('createdOngId', response.body.id);
+    });
+});
+
+Cypress.Commands.add('login', () => {
+    cy.visit('http://localhost:3000/profile', {
+        onBeforeLoad: (browser) => {
+            browser.localStorage.setItem('ongId', Cypress.env('createdOngId'))
+            browser.localStorage.setItem('ongName', 'Dogs queridos')
+        }
     });
 });

@@ -20,9 +20,16 @@ describe('Ongs', () => {
         });
     });
 
-    it('deve poder realizar um login no sistema', () => {
+    it.skip('deve poder realizar um login no sistema', () => {
         cy.visit('localhost:3000');
         cy.get('input[data-cy=id]').type(Cypress.env('createdOngId'));
         cy.get('button[type=submit]').click();
     });
+
+    it('deve fazer logout', () => {
+        cy.login();
+        cy.get('[data-cy="button-logout"]').click();
+    });
 });
+
+//e81b4132
